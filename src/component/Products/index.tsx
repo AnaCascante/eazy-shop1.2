@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 
 interface Image {
   url: string;
@@ -51,15 +53,17 @@ const Products: React.FC = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div>
+    <div className="grid lg:grid-col-3 gap-2">
       {data.map((item) => (
         <div key={item.id}>
-          <h2>{item.title}</h2>
-          <img src={item.image.url} alt={item.image.alt} />
+          <h2 className="text-base font-medium pt-2">{item.title}</h2>
+          <img
+           className="object-cover rounded-md h-48 w-48"
+           src={item.image.url} alt={item.image.alt} />
           <p>{item.description}</p>
-          <p>Price: ${item.price}</p>
-          <p>Discounted Price: ${item.discountedPrice}</p>
-          <p>Rating: {item.rating}</p>
+          <p className= "font-medium pt-2">Price: ${item.price}</p>
+          <p className= "font-extrabold text-red-700">Discounted Price: ${item.discountedPrice}</p>
+          <p className=" font-medium pt-2 ">Rating: {item.rating}</p>
           <div>
             <h3>Reviews</h3>
             {item.reviews.map((review) => (
@@ -69,6 +73,12 @@ const Products: React.FC = () => {
               </div>
             ))}
           </div>
+          <Link
+            to={`/product/${item.id}`}
+            className="bg-blue-700 text-white px-4 py-2 rounded m-2"
+          >
+            View product
+          </Link>
         </div>
       ))}
     </div>
