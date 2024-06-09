@@ -4,11 +4,14 @@ import { BrowserRouter, Route, createRoutesFromElements, RouterProvider} from "r
 // import pages 
 import RootLayout from "../Layouts/Layout";
 import HomePage from "../../Pages/HomePage";
+import ContactPage from "../../Pages/ContactPage";
+import React from "react";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout/>}>
       <Route index element={<HomePage/>} />
+      <Route path="ContactPage" element={<ContactPage />} />
     </Route>
     
   )
