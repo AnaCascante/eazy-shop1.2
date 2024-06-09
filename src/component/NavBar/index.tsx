@@ -8,7 +8,7 @@ import React from "react";
 
 function NavBar() {
   return (
-    <nav className="flex flex-row bg-slate-200 justify-normal ">
+    <nav className="flex flex-row bg-slate-200 justify-center">
         <Logo/>
          <NavLink to="/" className="hover:text-pink-500 m-3 ">Home</NavLink>
          <NavLink to="/ContactPage" className="hover:text-pink-500 m-3">Contact</NavLink>
