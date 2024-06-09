@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-
 interface Image {
   url: string;
   alt: string;
@@ -37,8 +36,8 @@ const Products: React.FC = () => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const result: { data: Product[] } = await response.json();
-        setData(result.data);
+        const result: Product[] = await response.json();
+        setData(result);
       } catch (error: any) {
         setError(error.message);
       } finally {
@@ -53,17 +52,19 @@ const Products: React.FC = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="grid lg:grid-col-3 gap-2">
+    <div className="grid lg:grid-cols-3 gap-2">
       {data.map((item) => (
         <div key={item.id}>
           <h2 className="text-base font-medium pt-2">{item.title}</h2>
           <img
-           className="object-cover rounded-md h-48 w-48"
-           src={item.image.url} alt={item.image.alt} />
+            className="object-cover rounded-md h-48 w-48"
+            src={item.image.url} 
+            alt={item.image.alt} 
+          />
           <p>{item.description}</p>
-          <p className= "font-medium pt-2">Price: ${item.price}</p>
-          <p className= "font-extrabold text-red-700">Discounted Price: ${item.discountedPrice}</p>
-          <p className=" font-medium pt-2 ">Rating: {item.rating}</p>
+          <p className="font-medium pt-2">Price: ${item.price}</p>
+          <p className="font-extrabold text-red-700">Discounted Price: ${item.discountedPrice}</p>
+          <p className="font-medium pt-2">Rating: {item.rating}</p>
           <div>
             <h3>Reviews</h3>
             {item.reviews.map((review) => (
